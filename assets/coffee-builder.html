@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Rock+Salt&display=swap');
+        
+        body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("https://wallpapercat.com/w/full/5/4/f/116640-3008x1960-desktop-hd-friends-tv-series-background-photo.jpg");
+    background-size: cover; /* This will make the image cover the entire background */
+    background-position: center; /* This ensures the image is centered */
+    background-repeat: no-repeat; 
+}
+
+.container {
+
+    display: flex;
+    gap: 40px;
+    width: 1000px;
+    background: #cfa16b; /* Warm coffee brown background */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.3);
+}
+
+.ingredients-panel {
+    flex: 1;
+    background: #8e5a3e; /* Rich coffee brown for the ingredients panel */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(176, 0, 0, 0.2);
+    border: 1px solid #5d3a1b;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    align-content: start;
+}
+
+.ingredient-group {
+    background: #d9b58c; /* Light tan background for ingredient groups */
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ffffff;
+}
+
+.ingredient-group h3 {
+    color: #3d2b1f; /* Dark coffee color for the headings */
+    margin: 0 0 10px 0;
+    font-family: 'Rock Salt', cursive;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+}
+
+.ingredient-btn {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    background: #f2e6c4; /* Creamy light background for buttons */
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1em;
+    color: #3d2b1f; /* Dark coffee color for text */
+}
+
+.ingredient-btn:hover {
+    background: #ffcc80; /* Light golden yellow on hover */
+}
+
+.ingredient-btn.selected {
+    background: #f8e1c1; /* Soft cream color for selected items */
+    color: #4e3629; /* Dark brown when selected */
+}
+
+.coffee-display {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #6d4f30; /* Dark coffee brown for the display */
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    gap: 20px;
+}
+
+.order-btn {
+    width: 80%;
+    padding: 12px 24px;
+    background: #c76e45; /* Warm coffee brown for the order button */
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-family: Poppins;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.order-btn:hover {
+    background: #e4a04e; /* Rich caramel yellow when hovering */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+.order-btn:active {
+    transform: translateY(0);
+}
+
+.order-btn:disabled {
+    background: #9e5a2f; /* Muted brown when disabled */
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.order-btn .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    transform: scale(0);
+    animation: orderRipple 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes orderRipple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.order-confirmation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #3c9141; /* Forest green for confirmation */
+    border: 1px solid #c0a080;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: 0 8px 32px rgba(239, 233, 233, 0.5);
+    z-index: 1000;
+    display: none;
+}
+
+.cup {
+    position: relative;
+    width: 200px;
+    height: 220px;
+    background: rgba(192, 160, 128, 0.1);
+    border-radius: 0 0 85px 85px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    border: 10px solid #c0a080;
+    border-top: none;
+    overflow: hidden;
+}
+
+.coffee {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 0;
+    background: rgba(107, 68, 35, 0.8); /* Dark coffee brown for coffee */
+    border-radius: 0 0 75px 75px;
+    transition: height 0.8s;
+}
+
+.steam {
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.7s;
+}
+
+.steam.active {
+    opacity: 0.6;
+}
+
+.bubble {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    animation: bubble 2s ease-in infinite;
+}
+
+.pouring {
+    position: absolute;
+    top: -20px;
+    width: 4px;
+    height: 20px;
+    background: white;
+    animation: pour 0.5s linear;
+    transform-origin: top;
+}
+
+.mixing {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    overflow: hidden;
+}
+
+.ripple {
+    position: absolute;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    animation: ripple 1s linear forwards;
+    pointer-events: none;
+}
+
+.swirl {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 30%, rgba(255, 255, 255, 0.1) 70%);
+    animation: swirl 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.7s;
+}
+
+.ingredients-list {
+    grid-column: span 2;
+    color: #3d2b1f; /* Dark coffee color for list */
+    padding: 15px;
+    background: #d9b58c; /* Soft coffee tan for the list background */
+    border-radius: 8px;
+}
+
+.joey {
+    height: 30%;
+    width: 30%;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="ingredients-panel">
+            <div class="ingredient-group">
+                <h3>The Foundation</h3>
+                <button class="ingredient-btn" data-type="base" data-color="#6b4423">House Espresso</button>
+                <button class="ingredient-btn" data-type="base" data-color="#8b5d33">Classic Americano</button>
+            </div>
+
+            <div class="ingredient-group">
+                <h3>The Cream</h3>
+                <button class="ingredient-btn" data-type="milk" data-color="#e6d5c3">Fresh Cream</button>
+                <button class="ingredient-btn" data-type="milk" data-color="#f2e6d9">Almond Essence</button>
+                <button class="ingredient-btn" data-type="milk" data-color="#e6d9cc">Oat Velvet</button>
+            </div>
+
+            <div class="ingredient-group">
+                <h3>The Essence</h3>
+                <button class="ingredient-btn" data-type="flavor" data-color="#8b4513">Caramel Gold</button>
+                <button class="ingredient-btn" data-type="flavor" data-color="#654321">Dark Chocolate</button>
+                <button class="ingredient-btn" data-type="flavor" data-color="#7b3f00">Vanilla Bean</button>
+            </div>
+
+            <div class="ingredient-group">
+                <h3>The Finishing Touch</h3>
+                <button class="ingredient-btn" data-type="extra" data-color="#f5f5dc">Whipped Crème</button>
+                <button class="ingredient-btn" data-type="extra" data-color="#d2691e">Ceylon Cinnamon</button>
+            </div>
+
+            <div class="ingredients-list">Awaiting your selection...</div>
+        </div>
+
+        <div class="coffee-display">
+            <div class="coffee-cup">
+                
+                    <svg class="steam" viewBox="0 0 100 100">
+                        <path d="M30,50 Q50,20 70,50" stroke="#c0a080" fill="none" stroke-width="5">
+                            <animate attributeName="d" 
+                                dur="3s"
+                                repeatCount="indefinite"
+                                values="M30,50 Q50,20 70,50;
+                                        M30,50 Q50,30 70,50;
+                                        M30,50 Q50,20 70,50"/>
+                        </path>
+                        <path d="M20,50 Q40,25 60,50" stroke="#c0a080" fill="none" stroke-width="4">
+                            <animate attributeName="d" 
+                                dur="2.5s"
+                                repeatCount="indefinite"
+                                values="M20,50 Q40,25 60,50;
+                                        M20,50 Q40,35 60,50;
+                                        M20,50 Q40,25 60,50"/>
+                        </path>
+                    </svg>
+                
+                <div class="cup">
+                    <div class="coffee"></div>
+                </div>
+            </div>
+            <button class="order-btn" disabled>Place Order</button>
+        </div>
+    </div>
+
+    <!-- Add order confirmation dialog -->
+    <div class="order-confirmation">
+        <h2>Order Confirmed! Your custom coffee will be ready faster than Joey finishes a sandwich!</h2>
+        <br>
+        <img class="joey" src="https://i.pinimg.com/originals/f0/fd/59/f0fd5950b5436831b42790c9ab277937.gif" alt="Joey asks How you DOIN?">
+        <br>
+        <button class="order-btn" onclick="hideConfirmation()">Feelin' good, Joey. Living the caffeinated life!</button>
+    </div>
+
+        
+
+    <script>
+        // Initialize selected ingredients object
+        const selectedIngredients = {
+            base: null,
+            milk: null,
+            flavor: null,
+            extra: null
+        };
+
+        // Helper function to convert hex to RGB
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        }
+
+        // Helper function to blend colors
+        function blendColors(colors) {
+            if (colors.length === 0) return 'rgba(107, 68, 35, 0.8)';
+            if (colors.length === 1) return colors[0];
+
+            const mix = colors.reduce((acc, color) => {
+                const matches = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*[\d.]+)?\)/);
+                if (!matches) return acc;
+                return {
+                    r: acc.r + parseInt(matches[1]),
+                    g: acc.g + parseInt(matches[2]),
+                    b: acc.b + parseInt(matches[3])
+                };
+            }, { r: 0, g: 0, b: 0 });
+
+            return `rgba(${Math.round(mix.r/colors.length)}, 
+                        ${Math.round(mix.g/colors.length)}, 
+                        ${Math.round(mix.b/colors.length)}, 0.8)`;
+        }
+
+        function createParticle(x, y, color) {
+            const particle = document.createElement('div');
+            particle.className = 'bubble';
+            particle.style.left = x + 'px';
+            particle.style.bottom = '0px';
+            particle.style.width = Math.random() * 10 + 5 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.background = color;
+            particle.style.opacity = Math.random() * 0.5 + 0.2;
+            particle.style.animationDuration = Math.random() * 2 + 1 + 's';
+            return particle;
+        }
+
+        function pourIngredient(color) {
+            const cup = document.querySelector('.cup');
+            const mixing = document.querySelector('.mixing') || document.createElement('div');
+            mixing.className = 'mixing';
+            cup.appendChild(mixing);
+
+            // Create pouring effect
+            const pour = document.createElement('div');
+            pour.className = 'pouring';
+            pour.style.background = color;
+            pour.style.left = Math.random() * 160 + 20 + 'px';
+            cup.appendChild(pour);
+
+            // Create ripple effect at the coffee surface
+            setTimeout(() => {
+                const coffeeHeight = document.querySelector('.coffee').offsetHeight;
+                const ripple = document.createElement('div');
+                ripple.className = 'ripple';
+                ripple.style.left = pour.style.left;
+                ripple.style.top = `${220 - coffeeHeight}px`;
+                ripple.style.borderColor = color;
+                cup.appendChild(ripple);
+
+                // Remove ripple after animation
+                setTimeout(() => ripple.remove(), 1000);
+
+                // Add bubbles
+                for (let i = 0; i < 10; i++) {
+                    setTimeout(() => {
+                        const bubble = createParticle(
+                            parseInt(pour.style.left) - 10,
+                            0,
+                            color
+                        );
+                        mixing.appendChild(bubble);
+                        setTimeout(() => bubble.remove(), 2000);
+                    }, i * 100);
+                }
+            }, 200);
+
+            // Cleanup
+            setTimeout(() => {
+                pour.remove();
+            }, 500);
+        }
+
+        function activateSwirl() {
+            const cup = document.querySelector('.cup');
+            let swirl = cup.querySelector('.swirl') || document.createElement('div');
+            swirl.className = 'swirl';
+            cup.appendChild(swirl);
+            swirl.style.opacity = '1';
+            
+            setTimeout(() => {
+                swirl.style.opacity = '0';
+                setTimeout(() => swirl.remove(), 300);
+            }, 2000);
+        }
+
+        function updateCoffee() {
+            const coffee = document.querySelector('.coffee');
+            let height = 0;
+            let color = 'rgba(107, 68, 35, 0.8)';
+
+            if (selectedIngredients.base) height += 50;
+            if (selectedIngredients.milk) height += 50;
+            if (selectedIngredients.flavor) height += 40;
+            if (selectedIngredients.extra) height += 30;
+
+            let colors = [];
+            Object.values(selectedIngredients).forEach(ingredient => {
+                if (ingredient) {
+                    const rgb = hexToRgb(ingredient.color);
+                    colors.push(`rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.8)`);
+                }
+            });
+
+            if (colors.length > 0) {
+                color = blendColors(colors);
+            }
+
+            coffee.style.height = `${height}px`;
+            coffee.style.background = color;
+            
+
+            const ingredientsList = document.querySelector('.ingredients-list');
+            const selectedItems = Object.entries(selectedIngredients)
+                .filter(([_, value]) => value)
+                .map(([_, value]) => value.name);
+            
+            if (selectedItems.length > 0) {
+                ingredientsList.innerHTML = selectedItems
+                    .map(item => `• ${item}`)
+                    .join('<br>');
+            } else {
+                ingredientsList.innerHTML = "Awaiting your selection...";
+            }
+        }
+
+        // Add click event listeners to all ingredient buttons
+        document.querySelectorAll('.ingredient-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const type = button.dataset.type;
+                const color = button.dataset.color;
+                const name = button.textContent;
+                const wasSelected = button.classList.contains('selected');
+                
+                // Remove selected class from all buttons of same type
+                document.querySelectorAll(`.ingredient-btn[data-type="${type}"]`)
+                    .forEach(btn => btn.classList.remove('selected'));
+
+                if (!wasSelected) {
+                    button.classList.add('selected');
+                    selectedIngredients[type] = { name, color };
+                    
+                    // Add pouring and mixing animations
+                    const rgb = hexToRgb(color);
+                    pourIngredient(`rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.8)`);
+                    setTimeout(activateSwirl, 500);
+                } else {
+                    selectedIngredients[type] = null;
+                }
+                updateCoffee();
+                
+            });
+        });
+        document.querySelector('.order-btn').addEventListener('click', function(e) {
+            if (this.disabled) return;
+
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple';
+            
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = e.clientX - rect.left - size/2 + 'px';
+            ripple.style.top = e.clientY - rect.top - size/2 + 'px';
+
+            this.appendChild(ripple);
+            
+            // Show order confirmation
+            showConfirmation();
+
+            setTimeout(() => ripple.remove(), 600);
+        });
+
+        function showConfirmation() {
+            const confirmation = document.querySelector('.order-confirmation');
+            confirmation.style.display = 'block';
+        }
+
+        function hideConfirmation() {
+            const confirmation = document.querySelector('.order-confirmation');
+            confirmation.style.display = 'none';
+            
+            // Reset the coffee maker
+            selectedIngredients.base = null;
+            selectedIngredients.milk = null;
+            selectedIngredients.flavor = null;
+            selectedIngredients.extra = null;
+            
+            document.querySelectorAll('.ingredient-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            updateCoffee();
+        }
+
+        // Update the updateCoffee function to handle button state
+        const originalUpdateCoffee = updateCoffee;
+        updateCoffee = function() {
+            originalUpdateCoffee();
+            
+            // Enable/disable order button based on whether base ingredient is selected
+            const orderBtn = document.querySelector('.order-btn');
+            orderBtn.disabled = !selectedIngredients.base;
+        };
+        
+    </script>
+</body>
+</html>
