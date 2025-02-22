@@ -1,16 +1,16 @@
 // Menu items
 const menuItems = [
-    { name: 'Espresso', price: '$2.50', category: 'coffee', image: 'C:/Users/Kanda/OneDrive/Desktop/NAN/assets/coffee-cup.png' },
-    { name: 'Cappuccino', price: '$3.00', category: 'coffee', image: 'C:/Users/Kanda/OneDrive/Desktop/NAN/assets/coffee-cup.png' },
-    { name: 'Latte', price: '$3.50', category: 'coffee', image: 'C:/Users/Kanda/OneDrive/Desktop/NAN/assets/coffee-cup.png' },
-    { name: 'Bagel', price: '$1.99', category: 'food', image: 'C:/Users/Kanda/OneDrive/Desktop/NAN/assets/coffee-cup.png' },
-    { name: 'Croissant', price: '$2.50', category: 'food', image: 'C:/Users/Kanda/OneDrive/Desktop/NAN/assets/coffee-cup.png' },
-    { name: 'Chocolate Cake', price: '$3.99', category: 'desserts', image: 'C:/Users/Kanda/OneDrive/Desktop/NAN/assets/coffee-cup.png' },
-    { name: 'Cookies', price: '$2.00', category: 'desserts', image: 'C:/Users/Kanda/OneDrive/Desktop/NAN/assets/coffee-cup.png' },
+    { name: 'Espresso', price: '$2.50', category: 'coffee', image: 'assets/coffee-cup.png' },
+    { name: 'Cappuccino', price: '$3.00', category: 'coffee', image: 'assets/coffee-cup.png' },
+    { name: 'Latte', price: '$3.50', category: 'coffee', image: 'assets/coffee-cup.png' },
+    { name: 'Bagel', price: '$1.99', category: 'food', image: 'assets/coffee-cup.png' },
+    { name: 'Croissant', price: '$2.50', category: 'food', image: 'assets/coffee-cup.png' },
+    { name: 'Chocolate Cake', price: '$3.99', category: 'desserts', image: 'assets/coffee-cup.png' },
+    { name: 'Cookies', price: '$2.00', category: 'desserts', image: 'assets/coffee-cup.png' },
     // New items added
-    { name: 'Mocha', price: '$3.75', category: 'coffee', image: 'C:/Users/Kanda/OneDrive/Desktop/NAN/assets/coffee-cup.png' },
-    { name: 'Blueberry Muffin', price: '$2.80', category: 'food', image: 'C:/Users/Kanda/OneDrive/Desktop/NAN/assets/coffee-cup.png' },
-    { name: 'Cheesecake', price: '$4.25', category: 'desserts', image: 'C:/Users/Kanda/OneDrive/Desktop/NAN/assets/coffee-cup.png' },
+    { name: 'Mocha', price: '$3.75', category: 'coffee', image: 'assets/coffee-cup.png' },
+    { name: 'Blueberry Muffin', price: '$2.80', category: 'food', image: 'assets/coffee-cup.png' },
+    { name: 'Cheesecake', price: '$4.25', category: 'desserts', image: 'assets/coffee-cup.png' },
 ];
 
 // Function to render menu items
