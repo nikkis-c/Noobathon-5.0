@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central Perk</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .logo img {
+            width: 160px;
+            height: auto;
+            animation: bounce 2s infinite ease-in-out;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        body {
+            display: flex;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: #efe6dd;
+        }
+        .left-section {
+            width: 30%;
+            background: #4a2c2a;
+            color: white;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .logo-container img {
+            width: 160px;
+        }
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+        }
+        button {
+            padding: 14px;
+            border: none;
+            background: #25522d;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+        button:hover {
+            background: #37674a;
+        }
+        .info-box {
+            margin-top: 20px;
+            padding: 20px;
+            font-size: 16px;
+            background: #5a3d31;
+            color: #f3e0d2;
+            width: 100%;
+            flex-grow: 2;
+        }
+        .right-section {
+            width: 70%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .right-section img {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+        }
+        .couch-button {
+            position: absolute;
+            top: 47%; 
+            left: 25%;
+            width: 360px;
+            height: 200px;
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+        }
+        .hugsy-button {
+            position: absolute;
+            top: 76%; 
+            left: 20%;
+            width: 40px;
+            height: 60px;
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+        }
+        .music-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px;
+            color: white;
+            background-color: none;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .music-button:hover {
+            background: rgba(255, 255, 255, 0.972);
+        }
+    </style>
+</head>
+<body>
+    <div class="left-section">
+        <div class="logo-container logo">
+            <img src="logopng.png" alt="Central Perk Logo">
+        </div>
+        <div class="buttons">
+            <button>Menu</button>
+            <button>Return</button>
+            <button>Help</button>
+        </div>
+        <div class="info-box" id="info-box" style="text-align:center">
+            <h2>F.R.I.E.N.D.S</h2>
+        </div>
+    </div>
+    <div class="right-section">
+        <img src="hello.jpg" alt="Central Perk Scene" usemap="#centralPerkMap">
+        <button class="couch-button" onclick="showInfo('The couch was almost removed before filming began!')"></button>
+        <button class="hugsy-button" onclick="showInfo('Joey`s adorable pet penguin: Hugsy :D')"></button>
+        
+        <button class="music-button" onclick="toggleMusic()" style="background-color:none">🔊</button>
+
+        <map name="centralPerkMap">
+            <a href="#"><area shape="poly" coords="24,89, 44,89, 52,128, 74,190, 40,251, -3,218, -3,148, 18,83" alt="Gunther's Spot" onmousedown="showInfo('This is where Gunther kept his secret coffee recipes!')"></a>
+        </map>
+    </div>
+
+    <audio id="background-music" loop>
+        <source src="friends-theme.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        let music = document.getElementById("background-music");
+        let button = document.querySelector(".music-button");
+
+        function autoPlayMusic() {
+            // Silent interaction trick (works on most browsers)
+            document.body.addEventListener('click', () => {
+                if (music.paused) {
+                    music.play();
+                }
+            }, { once: true });
+
+            let playPromise = music.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    console.log("Music autoplayed successfully.");
+                }).catch(() => {
+                    console.log("Autoplay blocked, waiting for user interaction.");
+                });
+            }
+        }
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                button.innerHTML = "🔇 Sound Off";
+            } else {
+                music.pause();
+                button.innerHTML = "🔊 Sound On";
+            }
+        }
+
+    </script>
+</body>
+</html>
