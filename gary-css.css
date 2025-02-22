@@ -1,0 +1,169 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Start Chat Button */
+button {
+    padding: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+/* Chat Popup */
+.chat-popup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 20%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 60%;
+    background-color: #461414;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(44, 9, 9, 0.1);
+    z-index: 1000;
+    overflow-y: auto;
+    background-image: url('https://i.pinimg.com/736x/d7/8b/44/d78b44868a3696e9cd77b3f73451ba82.jpg');
+    background-size: contain;
+    background-position: center right;
+    background-repeat: no-repeat;
+    transition: all 0.5s ease-in-out;
+}
+
+/* Chat Box */
+.chat-box {
+    padding: 15px;
+    height: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Chat Messages */
+.chat-messages {
+    margin-bottom: 20px;
+    max-height: 70%;
+    overflow-y: auto;
+}
+
+/* Gunther's Messages */
+.message.gunther-message {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+    width: fit-content;
+}
+
+/* User's Messages */
+.message.user-message {
+    background-color: #1b5f12;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+    align-self: flex-end;
+    width: fit-content;
+}
+
+/* Chat Options (Replies Section) */
+#chatOptions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns replies to the left */
+    padding-left: 15px;
+}
+
+/* Reply Buttons */
+#chatOptions button {
+    display: flex;
+    width: auto;
+    text-align: left;
+    flex-wrap: wrap; /* Ensure buttons wrap if needed */
+    justify-content: flex-start;
+    padding: 10px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease-in, transform 0.3s ease-in;
+    margin-top: 8px;
+    
+}
+
+/* Show buttons smoothly */
+#chatOptions button.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Button Hover Effect */
+#chatOptions button:hover {
+    background-color: #ddd;
+}
+
+/* Chat Popup Animation */
+@keyframes popupAnimation {
+    0% {
+        transform: translate(-50%, 20%);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+/* Button Animations */
+@keyframes floatUp {
+    0% {
+        transform: translate(-50%, 30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes floatUpBottom {
+    0% {
+        transform: translate(-50%, 30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+/* When chat popup is active */
+.chat-popup.active {
+    animation: popupAnimation 0.5s ease-out;
+    display: block;
+}
+/* Animating Reply Buttons */
+.chat-options button:first-child {
+    animation: floatUp 0.5s ease-in-out forwards;
+}
+
+.chat-options button:nth-child(2) {
+    animation: floatUpBottom 0.5s ease-in-out forwards;
+    animation-delay: 0.5s;
+}
