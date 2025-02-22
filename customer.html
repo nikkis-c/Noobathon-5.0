@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends Coffee Shop - Reviews</title>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Rock+Salt&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6F4E37; /* Coffee Brown */
+            --secondary-color: #C4A484; /* Latte Beige */
+            --background-color: #FFF8F0; /* Coffee Cream */
+            --text-color: #333; /* Dark text for readability */
+            --highlight-color: #FF5722; /* Accent Orange (for buttons) */
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--background-color);
+            background-image: url('custimg.jpg');
+            background-repeat: no-repeat;
+            background-size: cover; /* Ensure the background image covers the entire page */
+            background-position: center; /* Keep the image centered */
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            position: relative; /* To position the pseudo-element */
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(49, 47, 47, 0.6); /* Semi-transparent overlay */
+            z-index: -1; /* Ensure the overlay stays behind the content */
+        }
+
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .reviews-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .reviews-header h1 {
+            color: var(--primary-color);
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .reviews-header p {
+            font-size: 1.2em;
+            color: var(--secondary-color);
+        }
+
+        .sort-controls {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .sort-controls select {
+            padding: 8px;
+            border: 2px solid var(--secondary-color);
+            border-radius: 5px;
+            background-color: white;
+            color: var(--text-color);
+            font-size: 1em;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .review-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .stars {
+            color: #FFD700;
+        }
+
+        .review-date {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .review-name{
+            text-decoration: underline;
+        }
+        .review-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid var(--secondary-color);
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: var(--highlight-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.2s;
+        }
+
+        .submit-btn:hover {
+            background-color: #FF3D00;
+        }
+
+        .rating-input {
+            display: flex;
+            gap: 10px;
+            font-size: 1.5em;
+        }
+
+        .rating-input span {
+            cursor: pointer;
+            color: #ddd;
+        }
+
+        .rating-input span.active {
+            color: #FFD700;
+        }
+        .logo img {
+            width: 160px; /* Adjusted logo size */
+            height: auto;
+            animation: bounce 2s infinite ease-in-out; /* Fun bouncing animation */
+        }
+        @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+        }
+        40% {
+            transform: translateY(-10px);
+        }
+        60% {
+            transform: translateY(-5px);
+        }
+    }
+        /* Coffee cup background and other subtle details */
+        .coffee-cup-background {
+            background-image: url('https://img.icons8.com/ios/452/coffee-cup.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 50px;
+            padding-left: 50px;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="reviews-header">
+            <div class="logo">
+                <img src="new_logo_main_white_250x.avif" alt="Central Perk Logo">
+              </div>
+            <p>Customer Reviews & Experiences</p>
+        </div>
+
+        <div class="sort-controls">
+            <select id="sort-select">
+                <option value="newest">Newest First</option>
+                <option value="highest">Highest Rated</option>
+            </select>
+        </div>
+
+        <div class="reviews-grid" id="reviews-container">
+            <!-- Reviews will be dynamically inserted here -->
+        </div>
+
+        <div class="review-form coffee-cup-background">
+            <h2>Share Your Experience</h2>
+            <form id="review-form">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Rating</label>
+                    <div class="rating-input" id="rating-stars">
+                        <span data-rating="1">★</span>
+                        <span data-rating="2">★</span>
+                        <span data-rating="3">★</span>
+                        <span data-rating="4">★</span>
+                        <span data-rating="5">★</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="review">Your Review</label>
+                    <textarea id="review" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let reviews = [
+            {
+                name: "Sarah Johnson",
+                rating: 5,
+                text: "Best coffee in town! The atmosphere is so cozy and friendly. Love the new seasonal drinks!",
+                date: new Date("2025-02-20")
+            },
+            {
+                name: "Mike Chen",
+                rating: 4,
+                text: "Great place to work remotely. The wifi is reliable and the coffee keeps me going!",
+                date: new Date("2025-02-18")
+            },
+            {
+                name: "Emma Davis",
+                rating: 5,
+                text: "Their pastries are to die for! Perfect with their signature latte.",
+                date: new Date("2025-02-15")
+            }
+        ];
+
+        function getStarRating(rating) {
+            return "★".repeat(rating) + "☆".repeat(5 - rating);
+        }
+
+        function formatDate(date) {
+            return new Date(date).toLocaleDateString();
+        }
+
+        function displayReviews(sortMethod = 'newest') {
+            const container = document.getElementById('reviews-container');
+            container.innerHTML = '';
+
+            const sortedReviews = [...reviews].sort((a, b) => {
+                if (sortMethod === 'newest') {
+                    return b.date - a.date;
+                } else {
+                    return b.rating - a.rating;
+                }
+            });
+
+            sortedReviews.forEach(review => {
+                const reviewElement = document.createElement('div');
+                reviewElement.className = 'review-card';
+                reviewElement.innerHTML = `
+                    <div class="review-header">
+                        <h3 style="color:blue">${review.name}</h3>
+                        <div class="stars">${getStarRating(review.rating)}</div>
+                    </div>
+                    <p>${review.text}</p>
+                    <div class="review-date">${formatDate(review.date)}</div>
+                `;
+                container.appendChild(reviewElement);
+            });
+        }
+
+        document.getElementById('sort-select').addEventListener('change', (e) => {
+            displayReviews(e.target.value);
+        });
+
+        let selectedRating = 0;
+        const ratingStars = document.getElementById('rating-stars');
+        const stars = ratingStars.getElementsByTagName('span');
+
+        function updateStars(rating) {
+            Array.from(stars).forEach((star, index) => {
+                star.classList.toggle('active', index < rating);
+            });
+            selectedRating = rating;
+        }
+
+        ratingStars.addEventListener('click', (e) => {
+            if (e.target.tagName === 'SPAN') {
+                const rating = parseInt(e.target.dataset.rating);
+                updateStars(rating);
+            }
+        });
+
+        document.getElementById('review-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const text = document.getElementById('review').value;
+
+            if (selectedRating === 0) {
+                alert('Please select a rating');
+                return;
+            }
+
+            reviews.push({
+                name,
+                rating: selectedRating,
+                text,
+                date: new Date()
+            });
+
+            e.target.reset();
+            updateStars(0);
+            displayReviews(document.getElementById('sort-select').value);
+        });
+
+        displayReviews();
+    </script>
+</body>
+</html>

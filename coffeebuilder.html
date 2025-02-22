@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Coffee Maker</title>
+    <style>
+        body {
+            background: #2b1810;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            color: #e6b17e;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .game {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .ingredients {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        button {
+            background: #5c331e;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            color: #e6b17e;
+            cursor: pointer;
+            font-size: 18px;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        .cup {
+            width: 150px;
+            height: 180px;
+            background: white;
+            border-radius: 0 0 70px 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .handle {
+            width: 40px;
+            height: 70px;
+            border: 15px solid white;
+            border-radius: 20px;
+            position: absolute;
+            right: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .liquid {
+            width: 100%;
+            height: 0%;
+            background: #3d2317;
+            position: absolute;
+            bottom: 0;
+            transition: all 0.5s;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 20px;
+            text-align: center;
+            min-height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>☕ Make Your Coffee! ☕</h1>
+
+    <div class="game">
+        <div class="ingredients">
+            <button onclick="addIngredient('Coffee', '#3d2317')">Add Coffee ☕</button>
+            <button onclick="addIngredient('Water', '#8b5e3c')">Add Water 💧</button>
+            <button onclick="addIngredient('Milk', '#d4b59e')">Add Milk 🥛</button>
+            <button onclick="addIngredient('Reset')" id="resetBtn" style="display: none">Make New Coffee 🔄</button>
+        </div>
+
+        <div class="cup">
+            <div class="liquid"></div>
+            <div class="handle"></div>
+        </div>
+    </div>
+
+    <div class="message"></div>
+
+    <script>
+        let steps = 0;
+        const liquid = document.querySelector('.liquid');
+        const message = document.querySelector('.message');
+        const resetBtn = document.querySelector('#resetBtn');
+
+        function addIngredient(ingredient, color) {
+            if (ingredient === 'Reset') {
+                // Reset everything
+                steps = 0;
+                liquid.style.height = '0%';
+                message.textContent = '';
+                resetBtn.style.display = 'none';
+                return;
+            }
+
+            if (steps >= 3) return;
+
+            steps++;
+            liquid.style.height = `${steps * 33}%`;
+            liquid.style.backgroundColor = color;
+            
+            message.textContent = `Added ${ingredient}!`;
+
+            if (steps === 3) {
+                message.textContent = '✨ Your coffee is ready! ✨';
+                resetBtn.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

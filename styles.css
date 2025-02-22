@@ -1,124 +1,155 @@
-/* General Styles */
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    background: rgb(155, 115, 69);
-    color: #e0d3c6;
+    font-family: 'Courier Prime', monospace;
+    background-color: #f3f3f3;
+    
+    color: #333;
 }
 
-header {
+/* Header Styling */
+.header {
+    background-color: #000000; /* Vibrant coffee-themed background */
+    color: white;
+    padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background: #2b1e16;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Keeps header on top */
 }
 
+/* Logo Styling */
 .logo img {
-    height: 60px;
-    filter: drop-shadow(2px 2px 5px rgba(255, 255, 255, 0.3));
+    width: 160px; /* Adjusted logo size */
+    height: auto;
+    animation: bounce 2s infinite ease-in-out; /* Fun bouncing animation */
 }
 
-.search-bar input {
-    padding: 10px;
-    width: 250px;
-    border: none;
-    border-radius: 5px;
-    background: #4e3b31;
-    color: #e0d3c6;
-    transition: all 0.3s ease;
+/* Navigation Menu Styling */
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 40px; /* Increased spacing between menu items */
+    padding: 0;
 }
 
-.search-bar input:focus {
-    background: #fff;
-    color: #2b1e16;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+.nav li {
+    display: inline;
 }
 
-.filters {
+/* Navigation Links Styling */
+.nav a {
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    font-family: 'Rock Salt', cursive;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    letter-spacing: 1px; /* Spacing between letters for a more styled look */
+    text-transform: capitalize; /* Capitalizing the text for readability */
+}
+
+/* New Hover Effect for Links (Changed Color) */
+.nav a:hover {
+    color: #ffffff; /* White color on hover */
+    background-color: #31302f; /* A warm orange shade for the background on hover */
+    padding: 5px 10px; /* Add padding to make the hover effect feel like a button */
+    border-radius: 5px; /* Rounded corners for a softer look */
+    text-decoration: none;
+}
+
+/* Adding a horizontal separator for each menu item except the last */
+.nav a::after {
+    content: '|';
+    margin-left: 10px;
+    font-size: 22px;
+    color: white;
+}
+
+.nav a:last-child::after {
+    content: ''; /* Removes the separator from the last item */
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full height of the viewport */
+    background: url('centralperk-1024x770.jpg') no-repeat center center;
+    background-size: cover;
+  }
+  
+  .hero-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Next Section Styling */
+  #next-section {
+    padding: 60px 20px;
     text-align: center;
-    margin: 20px 0;
-    background: #3d2a23;
-    padding: 10px;
-    border-radius: 10px;
-    color: #e0d3c6;
+    background-color: #f4f4f4;
+  }
+  
+  #next-section h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  
+  #next-section p {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #555;
+  }
+
+/* Bounce Animation */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
 }
 
-select {
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    background: #5b463d;
-    color: #e0d3c6;
-}
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column; /* Stack logo and nav on mobile */
+        align-items: center;
+        text-align: center;
+    }
 
-.menu-dashboard {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    text-align: center;
-}
+    .logo img {
+        width: 120px; /* Smaller logo for mobile */
+        margin-bottom: 15px;
+    }
 
-.menu-item {
-    background: #4e3b31;
-    color: #e0d3c6;
-    padding: 15px;
-    border-radius: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 2px solid transparent;
-}
+    .nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
 
-.menu-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border-color: #a67c52;
-}
-
-.menu-image {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-    border-radius: 50%;
-}
-
-.special-menu {
-    text-align: center;
-    margin: 50px 0;
-    background: #3d2a23;
-    padding: 20px;
-    border-radius: 15px;
-    color: #e0d3c6;
-}
-
-.special-item {
-    display: inline-block;
-    background: #5b463d;
-    color: #e0d3c6;
-    padding: 20px;
-    margin: 15px;
-    border-radius: 10px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    border: 2px solid transparent;
-}
-
-.special-item:hover {
-    transform: rotate(-2deg) scale(1.05);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-    border-color: #a67c52;
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #2b1e16;
-    color: #a67c52;
-    font-weight: bold;
+    .nav a {
+        font-size: 16px; /* Smaller font size for mobile */
+    }
 }

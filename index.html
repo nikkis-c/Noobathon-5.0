@@ -1,76 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Central Perk Café</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Central Perk: The Digital Café Experience</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Rock+Salt&display=swap" rel="stylesheet">
+  <style>
+    /* Ensure smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
 <body>
+  <header class="header">
+    <div class="logo">
+      <img src="new_logo_main_white_250x.avif" alt="Central Perk Logo">
+    </div>
+    <nav class="nav">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <header>
-        <div class="logo">
-            <img src="C:\Users\Kanda\OneDrive\Desktop\NAN\assets\central-perk-seeklogo.png" alt="Central Perk Café">
-        </div>
-        <div class="search-bar">
-            <input type="text" id="search" placeholder="Search for an item..." oninput="searchMenu()">
-        </div>
-    </header>
+  <!-- Hero Section (Full screen image) -->
+  <section id="hero" class="hero">
+    <a href="#next-section" class="hero-link">
+      <img src="central-perk-gettyimages-1307259059-648b225c803d8.jpg" alt="Central Perk" class="hero-image">
+    </a>
+  </section>
 
-    <main>
-        <section class="filters">
-            <label for="categoryFilter">Filter by Category:</label>
-            <select id="categoryFilter" onchange="filterMenu()">
-                <option value="all">All</option>
-                <option value="coffee">Coffee</option>
-                <option value="food">Food</option>
-                <option value="desserts">Desserts</option>
-            </select>
-        </section>
-
-        <section class="menu-dashboard" id="menuDashboard">
-            <!-- Menu items will be dynamically added here by JavaScript -->
-        </section>
-
-        <section class="special-menu">
-            <h2>Friends Specials</h2>
-            <div class="special-item">
-                <h3>Rachel's Trifle</h3>
-                <p>A famous dessert from Friends that’s as quirky as Rachel!</p>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiui5VoU4IEZaP7FvS6sRvyHPlvqmxFYPGeA&s" alt="Rachel's Trifle" class="menu-image">
-            </div>
-            <div class="special-item">
-                <h3>Monica’s Mocha</h3>
-                <p>Monica's favorite coffee drink. Rich and indulgent.</p>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS73Wgw8RS_0ezxM0ZlMeo1CNKiPpU29IelrFgvNP8PXrANVwm2m34AisC0T6KINumXomA&usqp=CAU" alt="Monica’s Mocha" class="menu-image">
-            </div>
-            <div class="special-item">
-                <h3>Joey's Sandwich</h3>
-                <p>Joey’s infamous sandwich, piled high with meats and cheese!</p>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCj--RtDSp3B_ONqSO83neMqcjHMhqGSxGoXyifeieW73ddC3WH5bxhn4WgxQmvMsvN_Y&usqp=CAU" alt="Joey's Sandwich" class="menu-image">
-            </div>
-            <div class="special-item">
-                <h3>Phoebe's Vegetarian Soup</h3>
-                <p>Phoebe’s favorite soup – light, tasty, and full of veggies.</p>
-                <img src="https://feedmephoebe.com/wp-content/uploads/2022/06/Summer-Detox-Soup-Recipe-with-Vegetables-Squash-Zucchini-Peppers-Vegan-Vegetarian-Dairy-Free-Low-FODMAP-Gluten-Free-Liver-Detox-Recipes-6.jpg" alt="Phoebe's Vegetarian Soup" class="menu-image">
-            </div>
-            <div class="special-item">
-                <h3>Chandler's Fries</h3>
-                <p>Chandler’s go-to comfort food – crispy, salty, and perfect with ketchup.</p>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7-NTW1YM-CMeEcdZ6AilP3JqpOWdZlk_dmw&s" alt="Chandler's Fries" class="menu-image">
-            </div>
-            <div class="special-item">
-                <h3>Ross's Pretzel</h3>
-                <p>A salty, soft pretzel with a side of classic mustard.</p>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb72sEXpqhSrYuY6YUP6gPD_heFi-HmNOu9A&s" alt="Ross's Pretzel" class="menu-image">
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Central Perk Café. All Rights Reserved.</p>
-    </footer>
-
-    <script src="scripts.js"></script>
+  <!-- Next Section -->
+  <section id="next-section">
+    <h2>Welcome to the Digital Café Experience!</h2>
+    <p>Here, you can explore the menu, book your seat, and enjoy your favorite coffee. Join the fun!</p>
+  </section>
 </body>
 </html>
+
+
+
+
+
+
+
+
