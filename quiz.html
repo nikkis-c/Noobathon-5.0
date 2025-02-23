@@ -11,17 +11,18 @@
             margin: 0;
             padding: 20px;
             min-height: 100vh;
-            background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJFwyQCsX3suvSBjLfo_OdHrXruihVNRdJ3A&s') no-repeat center center fixed;
-            
-            background-size: cover;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/9/97/Friends_logo_2020.svg') no-repeat center center fixed;
+            background-size: 40%;
+            background-color: #f5f5f5;
             color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
+            background-color: #f5f5f5;
         }
 
         .quiz-container {
-            background: rgba(158, 158, 158, 0.95);
+            background: rgba(56, 32, 20, 0.95);
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -32,17 +33,17 @@
         }
 
         h1 {
-            font-family: sans-serif;
+            font-family: 'Fredoka One', cursive;
             font-size: 3em;
             margin-bottom: 30px;
-            color: #000000;
+            color: #FFB400;
             text-align: center;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .timer {
-            background: #41211e;
-            color: #ffffff;
+            background: #FFB400;
+            color: #2c3e50;
             padding: 10px 20px;
             border-radius: 25px;
             font-weight: bold;
@@ -53,7 +54,7 @@
         .score {
             font-size: 1.4em;
             margin: 20px 0;
-            color: #060b52;
+            color: #E74C3C;
             font-weight: bold;
         }
 
@@ -81,8 +82,8 @@
         }
 
         .choices button {
-            background: #748c92;
-            color: rgb(255, 255, 255);
+            background: #F5A623;
+            color: white;
             border: none;
             padding: 15px 20px;
             border-radius: 10px;
@@ -94,13 +95,13 @@
         }
 
         .choices button:hover {
-            background: #44545a;
+            background: #F39C12;
             transform: scale(1.02);
         }
 
         .start-btn, #next-btn {
-            background: #274b36;
-            color: rgb(0, 0, 0);
+            background: #2ECC71;
+            color: white;
             border: none;
             padding: 15px 30px;
             border-radius: 25px;
@@ -114,7 +115,7 @@
         }
 
         .start-btn:hover, #next-btn:hover {
-            background: #1a3f2a;
+            background: #27AE60;
             transform: scale(1.05);
         }
 
@@ -122,7 +123,7 @@
             margin-top: 30px;
             font-size: 1.4em;
             text-align: center;
-            color: #3d211e;
+            color: #FFB400;
             padding: 20px;
             border-radius: 15px;
             background: rgba(255, 255, 255, 0.1);
@@ -162,7 +163,7 @@
 </div>
 
 <script>
-    const questions =[
+    const questions = [
         {
             question: "What is Ross's second wife's name?",
             choices: ["Susan", "Emily", "Carol", "Rachel"],
