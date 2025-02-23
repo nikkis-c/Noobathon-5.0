@@ -7,8 +7,8 @@
 }
 
 body {
-    background: rgb(155, 115, 69);
-    color: #e0d3c6;
+    background: rgb(155, 115, 69); /* Warm earthy background */
+    color: #e0d3c6; /* Soft off-white text */
 }
 
 header {
@@ -16,7 +16,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background: #2b1e16;
+    background: #2b1e16; /* Dark brown background */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
@@ -59,9 +59,10 @@ select {
     color: #e0d3c6;
 }
 
+/* Menu Dashboard */
 .menu-dashboard {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust for responsiveness */
     gap: 20px;
     padding: 20px;
     text-align: center;
@@ -76,6 +77,10 @@ select {
     border: 2px solid transparent;
 }
 
+.menu-item-name{
+    font-family:'Courier New', Courier, monospace;
+}
+
 .menu-item:hover {
     transform: scale(1.05);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
@@ -88,7 +93,7 @@ select {
     object-fit: contain;
     border-radius: 50%;
 }
-
+/* Special Menu */
 .special-menu {
     text-align: center;
     margin: 50px 0;
@@ -98,21 +103,58 @@ select {
     color: #e0d3c6;
 }
 
+.special-items-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Card flip effect */
 .special-item {
-    display: inline-block;
-    background: #5b463d;
+    width: 250px; /* Smaller width */
+    height: 350px; /* Smaller height */
+    background: #5b463d; /* Darker brown background */
     color: #e0d3c6;
     padding: 20px;
     margin: 15px;
     border-radius: 10px;
     transition: transform 0.3s, box-shadow 0.3s;
-    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    perspective: 1000px; /* Adds depth for 3D flip */
 }
 
 .special-item:hover {
     transform: rotate(-2deg) scale(1.05);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     border-color: #a67c52;
+}
+
+.special-item img {
+    width: 100%; /* Image takes full width */
+    height: 180px; /* Adjusted height to match smaller card */
+    object-fit: cover; /* Ensures the image covers the area */
+    border-radius: 10px;
+}
+
+.special-item h3 {
+    font-size: 1.1em; /* Slightly smaller font size */
+    margin-top: 15px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.special-item p {
+    font-size: 0.9em; /* Slightly smaller font size */
+    color: #e0d3c6;
+    margin-bottom: 15px;
 }
 
 footer {
@@ -122,3 +164,51 @@ footer {
     color: #a67c52;
     font-weight: bold;
 }
+
+/* 3D flip effect */
+.special-item-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d; /* Maintains 3D space */
+    transition: transform 0.6s; /* Smooth flip transition */
+}
+
+.special-item:hover .special-item-inner {
+    transform: rotateY(180deg); /* Flips the card */
+}
+
+.special-item-front,
+.special-item-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Hides the back when flipped */
+    border-radius: 10px;
+}
+
+.special-item-front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.special-item-front img {
+    width: 100%; /* Ensures image fits */
+    height: 100%; /* Ensures image fits */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.special-item-back {
+    background-color: #3d2a23; /* Darker back */
+    color: #e0d3c6;
+    transform: rotateY(180deg); /* Initially rotated */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    text-align: center;
+}
+
