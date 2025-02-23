@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central Perk Café</title>
+    <link rel="stylesheet" href="menu.css">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Rock+Salt&display=swap" rel="stylesheet">
+
+    
+</head>
+
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="C:\Users\Kanda\OneDrive\Desktop\NAN\assets\central-perk-seeklogo.png" alt="Central Perk Café">
+        </div>
+        <h1 style="font-family: 'Rock Salt', cursive; text-align: center; margin: 0; flex-grow: 1;">could i be any more delicious?</h1>
+
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Search for an item..." oninput="searchMenu()">
+        </div>
+    </header>
+
+    <main>
+        <section class="filters">
+            <label for="categoryFilter">Filter by Category:</label>
+            <select id="categoryFilter" onchange="filterMenu()">
+                <option value="all">All</option>
+                <option value="coffee">Coffee</option>
+                <option value="food">Food</option>
+                <option value="desserts">Desserts</option>
+            </select>
+        </section>
+
+        <section class="menu-dashboard" id="menuDashboard">
+            <!-- Menu items will be dynamically added here by JavaScript -->
+        </section>
+
+        <section class="special-menu">
+            <h1 style="font-family: 'Rock Salt', cursive;">Friends Specials</h1>
+            <br>
+            <div class="special-items-container">
+                <div class="special-item">
+                    <div class="special-item-inner">
+                        <!-- Front of the card (image) -->
+                        <div class="special-item-front">
+                            <img src="https://pyxis.nymag.com/v1/imgs/59e/3bc/3564ff52fb45976183eafb0a845c202bf7-16-friends-rachel-trifle.rsquare.w400.jpg" alt="Rachel's Trifle">
+                        </div>
+                        <!-- Back of the card (details) -->
+                        <div class="special-item-back">
+                            <h2 style="font-family: 'Rock Salt', cursive;">Rachel's Trifle</h2>
+                            <p>A famous dessert from Friends that’s as quirky as Rachel!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="special-item">
+                    <div class="special-item-inner">
+                        <div class="special-item-front">
+                            <img src="https://i.pinimg.com/564x/ea/a0/8c/eaa08cdcc79a9f0ab0d47e14ad1b5df8.jpg" alt="Monica’s Mocha">
+                        </div>
+                        <div class="special-item-back">
+                            <h2 style="font-family: 'Rock Salt', cursive;">Monica’s Mocha</h2>
+                            <p>Monica's favorite coffee drink. Rich and indulgent.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="special-item">
+                    <div class="special-item-inner">
+                        <div class="special-item-front">
+                            <img src="https://people.com/thmb/4sPChlIOS5rQ503ZtrBttR-4q0s=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(639x0:641x2)/joey-meatball-sub-4b4e13ee8ebd4c54af2d7c64d1149b95.jpg" alt="Joey's Sandwich" class="menu-image">
+                        </div>
+                        <div class="special-item-back">
+                            <h2 style="font-family: 'Rock Salt', cursive;">Joey's Sandwich</h2>
+                            <p>Joey’s infamous sandwich, piled high with meats and cheese!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="special-item">
+                    <div class="special-item-inner">
+                        <div class="special-item-front">
+                            <img src="https://moshimotif.com/wp-content/uploads/2017/03/Season-4-Ep-13-Victoria-Beale-Accent-4.png" alt="Phoebe's Vegetarian Soup" class="menu-image">
+                        </div>
+                        <div class="special-item-back">
+                            <h2 style="font-family: 'Rock Salt', cursive;">Phoebe's Vegetarian Soup</h2>
+                            <p>Phoebe’s favorite soup – light, tasty, and full of veggies.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="special-item">
+                    <div class="special-item-inner">
+                        <div class="special-item-front">
+                            <img src="https://images.news18.com/webstories/2023/10/tumblr_p497he4LDm1vrtlydo6_400.png" alt="Chandler's Fries" class="menu-image">
+                        </div>
+                        <div class="special-item-back">
+                            <h2 style="font-family: 'Rock Salt', cursive;">Chandler's Fries</h2>
+                            <p>Chandler’s go-to comfort food – crispy, salty, and perfect with ketchup.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="special-item">
+                    <div class="special-item-inner">
+                        <div class="special-item-front">
+                            <img src="https://i.redd.it/s2areryynqjb1.jpg" alt="Ross's Pretzel" class="menu-image">
+                        </div>
+                        <div class="special-item-back">
+                            <h2 style="font-family: 'Rock Salt', cursive;">Ross's Pretzel</h2>
+                            <p>A salty, soft pretzel with a side of classic mustard.</p>
+                        </div>
+                    </div>
+                </div>
+
+        </section>
+        
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Central Perk Café. All Rights Reserved.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
