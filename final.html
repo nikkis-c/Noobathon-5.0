@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central Perk</title>
+    <link rel="stylesheet" href="gary-css.css">
+</head>
+<body>
+    <div class="left-section">
+    <div class="menu-link">
+        <div class="blackboard">
+            <h2>Joey Doesn’t Share Menus</h2>
+            <a href="menu (2).html"><div class="blackboard-item">The Reserved Table</div></a>
+            <a href="coffeebuilder.html"><div class="blackboard-item">Build your own Coffee</div></a>
+            <a href="quiz.html"><div class="blackboard-item">Quiz</div></a>
+            <a href="#" onclick="openRules(event)"><div class="blackboard-item">Help</div></a>
+        </div>
+    </div>
+    <div class="video-card">
+        <iframe 
+            src="https://www.youtube.com/embed/s2TyVQGoCYo?autoplay=1&loop=1&playlist=s2TyVQGoCYo&controls=0" 
+            frameborder="0" 
+            allow="autoplay; encrypted-media" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <div id="rulesModal" class="rules-modal">
+        <h2>☕ Central Perk House Rules</h2>
+        <p>📜 No stealing Joey’s food!</p>
+        <p>🎸 No badmouthing *Smelly Cat!*</p>
+        <p>☕ The couch is sacred—first come, first serve!</p>
+        <p>🔇 No talking during Ross’s "We were on a break" debates.</p>
+        <button class="close-btn" onclick="closeRules()">Close</button>
+    </div>
+    
+    
+    
+    <!-- Flipping Info Card -->
+    <div class="info-card">
+        <div class="info-card-inner">
+            <div class="info-card-front">
+                <h2>F.R.I.E.N.D.S</h2>
+                <p>Click the spots to discover hidden messages !</p>
+            </div>
+            <div class="info-card-back">
+                <div id="info-content">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="right-section">
+        <img src="hello.jpg" alt="Central Perk Scene" usemap="#centralPerkMap">
+        <button class="couch-button" onclick="showInfo('You found an 🥚! The couch was almost removed before filming began!')"></button>
+        <button class="hugsy-button" onclick="showInfo('You found an 🥚! Hugsy: The One Joey Wouldn’t Share!')"></button>
+        <button class="lobster-button" onclick="showInfo('You found an 🥚! In Friends (S2E14), Phoebe calls Rachel Ross’s lobsters, meaning they’re soulmates—like lobsters, which (supposedly) mate for life.')"></button>
+        <button class="pheobe-button" onclick="showInfo('You found an 🥚! ’’Smelly’’ Cat was Phoebe’s iconic song in Friends. It’s about a neglected, stinky cat whose bad smell isn’t its fault. The song became a recurring joke and even got a professional recording in the show.')"></button>
+        <button class="rachel-button" onclick="showInfo('You found an 🥚! In S1E1, Rachel runs into Central Perk in her wedding dress after leaving Barry at the altar. She realizes she doesn’t love him and decides to start a new, independent life with Monica’s help.')"></button>
+
+        <map name="centralPerkMap">
+            <a href="#"><area shape="poly" coords="24,89, 44,89, 52,128, 74,190, 40,251, -3,218, -3,148, 18,83" alt="Gunther's Spot" onclick="startChat()"></a></map>
+    </div>
+    <div id="chatPopup" class="chat-popup">
+        <div class="chat-box">
+            <div id="chatMessages" class="chat-messages"></div>
+            <div id="chatOptions" class="chat-options"></div>
+        </div>
+    </div>
+    <script src="gary-js.js"></script>
+</body>
+</html>
